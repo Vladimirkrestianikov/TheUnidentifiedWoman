@@ -30,8 +30,7 @@ function App() {
   }, []);
 
   return (
-    <Router basename="/Main"
-    >
+    <Router>
       <div className={`corruption-layer ${glitchEffect ? 'glitch-active' : ''}`}></div>
       <div className="static-noise"></div>
       
