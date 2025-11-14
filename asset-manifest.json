@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/TheUnidentifiedWoman/static/css/main.e2644c2b.css",
-    "main.js": "/TheUnidentifiedWoman/static/js/main.fc07ee5a.js",
-    "static/js/453.c6e77bee.chunk.js": "/TheUnidentifiedWoman/static/js/453.c6e77bee.chunk.js",
-    "index.html": "/TheUnidentifiedWoman/index.html",
-    "main.e2644c2b.css.map": "/TheUnidentifiedWoman/static/css/main.e2644c2b.css.map",
-    "main.fc07ee5a.js.map": "/TheUnidentifiedWoman/static/js/main.fc07ee5a.js.map",
-    "453.c6e77bee.chunk.js.map": "/TheUnidentifiedWoman/static/js/453.c6e77bee.chunk.js.map"
+    "main.css": "./static/css/main.e2644c2b.css",
+    "main.js": "./static/js/main.fadec7c7.js",
+    "static/js/453.c6e77bee.chunk.js": "./static/js/453.c6e77bee.chunk.js",
+    "index.html": "./index.html",
+    "main.e2644c2b.css.map": "./static/css/main.e2644c2b.css.map",
+    "main.fadec7c7.js.map": "./static/js/main.fadec7c7.js.map",
+    "453.c6e77bee.chunk.js.map": "./static/js/453.c6e77bee.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e2644c2b.css",
-    "static/js/main.fc07ee5a.js"
+    "static/js/main.fadec7c7.js"
   ]
 }
