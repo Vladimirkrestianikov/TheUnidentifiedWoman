@@ -1,0 +1,338 @@
+/* Contacts Section */
+.contacts-container {
+  position: relative;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.contacts-section {
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid #ff0000;
+  box-shadow: 
+    0 0 40px rgba(255, 0, 0, 0.4),
+    inset 0 0 40px rgba(139, 0, 0, 0.3);
+  padding: 40px;
+  margin: 20px auto;
+  max-width: 600px;
+  position: relative;
+  overflow: hidden;
+}
+
+.contacts-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 0, 0, 0.05) 2px,
+      rgba(255, 0, 0, 0.05) 4px
+    );
+  pointer-events: none;
+}
+
+/* Title */
+.contacts-title {
+  position: relative;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff0000;
+  text-align: center;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-shadow: 
+    0 0 10px #ff0000,
+    0 0 20px #ff0000,
+    0 0 30px #ff0000;
+}
+
+.title-text {
+  position: relative;
+  z-index: 2;
+}
+
+.title-glitch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent 45%, #00ffff 50%, transparent 55%);
+  opacity: 0;
+  animation: titleGlitch 8s infinite;
+}
+
+@keyframes titleGlitch {
+  0%, 100% { opacity: 0; }
+  2%, 5% { opacity: 0.8; }
+  7%, 10% { opacity: 0; }
+  15%, 18% { opacity: 0.6; }
+}
+
+/* Form */
+.contacts-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-label {
+  display: block;
+  color: #ff4444;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+/* Input Fields */
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid #ff0000;
+  color: #ffffff;
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #ffffff;
+  box-shadow: 
+    0 0 15px rgba(255, 0, 0, 0.7),
+    inset 0 0 10px rgba(255, 0, 0, 0.3);
+  background: rgba(26, 0, 0, 0.8);
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.input-corruption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ff0000, transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.form-input:focus + .input-corruption,
+.form-textarea:focus + .input-corruption {
+  opacity: 1;
+  animation: inputScan 2s linear infinite;
+}
+
+@keyframes inputScan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* File Input */
+.file-label {
+  cursor: pointer;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-custom {
+  display: block;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid #ff0000;
+  color: #ff4444;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.file-custom::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.file-custom:hover::before {
+  left: 100%;
+}
+
+.file-custom:hover {
+  color: #ffffff;
+  background: rgba(255, 0, 0, 0.2);
+  box-shadow: 
+    0 0 15px rgba(255, 0, 0, 0.5),
+    inset 0 0 10px rgba(255, 0, 0, 0.2);
+}
+
+/* Submit Button */
+.submit-button {
+  position: relative;
+  padding: 18px 30px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid #ff0000;
+  color: #ff0000;
+  font-family: 'Courier New', monospace;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  color: #ffffff;
+  background: rgba(255, 0, 0, 0.3);
+  box-shadow: 
+    0 0 25px rgba(255, 0, 0, 0.8),
+    inset 0 0 15px rgba(255, 0, 0, 0.4);
+  text-shadow: 0 0 10px #ffffff;
+}
+
+.button-text {
+  position: relative;
+  z-index: 2;
+}
+
+.button-glitch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent 45%, #00ffff 50%, transparent 55%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.submit-button:hover .button-glitch {
+  opacity: 0.3;
+  animation: buttonGlitch 0.5s linear;
+}
+
+@keyframes buttonGlitch {
+  0% { transform: translateX(-10px); }
+  25% { transform: translateX(10px); }
+  50% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}
+
+.button-scan {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.submit-button:hover .button-scan {
+  left: 100%;
+}
+
+/* Status Messages */
+.status-message {
+  position: relative;
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  overflow: hidden;
+}
+
+.status-message.success {
+  border-color: #00ff00;
+  color: #00ff00;
+  background: rgba(0, 26, 0, 0.5);
+  box-shadow: 
+    0 0 20px rgba(0, 255, 0, 0.3),
+    inset 0 0 20px rgba(0, 26, 0, 0.3);
+}
+
+.status-message.error {
+  border-color: #ff0000;
+  color: #ff0000;
+  background: rgba(26, 0, 0, 0.5);
+  box-shadow: 
+    0 0 20px rgba(255, 0, 0, 0.3),
+    inset 0 0 20px rgba(26, 0, 0, 0.3);
+}
+
+.status-text {
+  position: relative;
+  z-index: 2;
+}
+
+.status-pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% { box-shadow: 0 0 5px currentColor; }
+  50% { box-shadow: 0 0 20px currentColor; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contacts-section {
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  .contacts-title {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+  
+  .form-input,
+  .form-textarea {
+    padding: 12px;
+  }
+  
+  .submit-button {
+    padding: 15px 20px;
+    font-size: 1rem;
+  }
+}

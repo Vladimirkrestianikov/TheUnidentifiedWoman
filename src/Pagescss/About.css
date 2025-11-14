@@ -1,0 +1,159 @@
+.about-page {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Основной контейнер */
+.about-container {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 30px;
+  margin: 20px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Заголовки */
+.about-title {
+  font-size: 2.5rem;
+  color: #ff0000;
+  text-align: center;
+  margin-bottom: 30px;
+
+  position: relative;
+  letter-spacing: 3px;
+}
+
+.title-text {
+  position: relative;
+}
+
+.title-glitch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #00ffff;
+  clip-path: polygon(0 0, 100% 0, 100% 30%, 0 30%);
+  animation: titleGlitch 8s infinite;
+  opacity: 0;
+}
+
+/* Текстовые блоки */
+.text-block {
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.glitch-text {
+  position: relative;
+  font-size: 1.1rem;
+  color: #ff4444;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.text-main {
+  position: relative;
+}
+
+.description {
+  color: #ff6666;
+  line-height: 1.6;
+  font-size: 1rem;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+}
+
+/* Список миссии */
+.mission-list {
+  list-style: none;
+  padding: 0;
+}
+
+.mission-item {
+  color: #ff6666;
+  margin: 8px 0;
+  padding: 5px 0;
+  position: relative;
+  padding-left: 20px;
+}
+
+.item-bullet {
+  color: #ff0000;
+  position: absolute;
+  left: 0;
+  text-shadow: 0 0 5px #ff0000;
+}
+
+/* Системная информация */
+.system-info {
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid #ff0000;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px dashed #ff0000;
+}
+
+.info-label {
+  color: #ff4444;
+  font-weight: bold;
+}
+
+.info-value {
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff;
+}
+
+/* Анимации */
+@keyframes titleGlitch {
+  0%, 95% { opacity: 0; }
+  96% { opacity: 1; transform: translateX(-2px); }
+  97% { opacity: 0; transform: translateX(2px); }
+  98% { opacity: 1; transform: translateX(0); }
+  99% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Эффекты при наведении */
+.mission-item:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px #ffffff;
+  transition: all 0.3s ease;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .about-title {
+    font-size: 1.8rem;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  
+
+}
+
+@media (max-width: 480px) {
+  .about-title {
+    font-size: 1.5rem;
+  }
+  
+  .glitch-text {
+    font-size: 1rem;
+  }
+  
+  .description {
+    font-size: 0.9rem;
+  }
+}

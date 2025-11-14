@@ -1,0 +1,500 @@
+.main-page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Канвас с частицами */
+.particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Матричный дождь */
+.matrix-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent 90%, rgba(255, 0, 0, 0.1) 100%);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.3;
+}
+
+/* Основной контент */
+.main-content {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+}
+
+/* Герой секция */
+.hero-section {
+  text-align: center;
+  padding: 60px 30px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.main-title {
+  margin-bottom: 40px;
+}
+
+.title-line-1 {
+  font-size: 3rem;
+  color: #ff0000;
+  text-shadow: 0 0 20px #ff0000;
+  margin-bottom: 10px;
+  letter-spacing: 4px;
+  animation: titleGlow 3s ease-in-out infinite;
+}
+
+.title-line-2 {
+  font-size: 4rem;
+  color: #ffffff;
+  text-shadow: 
+    0 0 30px #ff0000,
+    0 0 60px #ff0000;
+  margin-bottom: 20px;
+  letter-spacing: 6px;
+  animation: titlePulse 4s ease-in-out infinite;
+}
+
+.title-subtext {
+  font-size: 1.2rem;
+  color: #ff6666;
+  letter-spacing: 2px;
+}
+
+.blinking-cursor {
+  animation: blink 1s infinite;
+}
+
+/* Терминал */
+.terminal-output {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid #ff0000;
+  padding: 20px;
+  margin: 30px auto;
+  max-width: 600px;
+  text-align: left;
+  font-family: 'Courier New', monospace;
+}
+
+.terminal-line {
+  margin: 10px 0;
+  animation: terminalType 0.5s ease-out;
+}
+
+.prompt {
+  color: #00ff00;
+}
+
+.command {
+  color: #ffffff;
+}
+
+.output {
+  color: #ff6666;
+}
+
+.output.highlight {
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+  animation: highlightPulse 2s infinite;
+}
+
+/* Социальные сети */
+.social-section {
+  margin: 40px 0;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #ff0000;
+  padding-bottom: 10px;
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #00ff00;
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  background: #00ff00;
+  border-radius: 50%;
+  animation: statusPulse 2s infinite;
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.social-card {
+  position: relative;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #ff0000;
+  padding: 25px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.social-card:hover {
+  transform: translateY(-5px);
+  border-color: #00ffff;
+  box-shadow: 
+    0 10px 30px rgba(0, 255, 255, 0.3),
+    inset 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.social-card.hovered {
+  animation: socialGlitch 0.3s ease;
+}
+
+.social-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  text-shadow: 0 0 15px currentColor;
+  transition: all 0.3s ease;
+}
+
+.social-card:hover .social-icon {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.social-info h3 {
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.social-info p {
+  color: #ff6666;
+  font-size: 0.9rem;
+}
+
+.social-connector {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+.connector-line {
+  width: 2px;
+  height: 20px;
+  background: #ff0000;
+  margin: 0 auto;
+}
+
+.connector-dot {
+  width: 8px;
+  height: 8px;
+  background: #ff0000;
+  border-radius: 50%;
+  margin: 5px auto 0;
+}
+
+.social-card:hover .connector-line,
+.social-card:hover .connector-dot {
+  background: #00ffff;
+  animation: connectorPulse 1s infinite;
+}
+
+.social-hover-effect {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.social-card:hover .social-hover-effect {
+  left: 100%;
+}
+
+/* Кнопки действий */
+.actions-section {
+  margin: 40px 0;
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.action-btn {
+  position: relative;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #ff0000;
+  color: #ffffff;
+  padding: 20px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.action-btn:hover {
+  border-color: #00ffff;
+  background: rgba(0, 255, 255, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 10px 25px rgba(0, 255, 255, 0.3),
+    inset 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.btn-icon {
+  font-size: 2rem;
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover .btn-icon {
+  transform: scale(1.3) rotate(180deg);
+}
+
+.btn-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.action-btn:hover .btn-particles {
+  opacity: 1;
+  animation: particlesFloat 2s infinite;
+}
+
+/* Статус система */
+.status-section {
+  margin: 40px 0;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+}
+
+.status-item {
+  text-align: center;
+}
+
+.status-label {
+  color: #ff6666;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.status-value {
+  color: #00ff00;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px #00ff00;
+}
+
+.status-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 0, 0, 0.3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.status-fill {
+  height: 100%;
+  background: #00ff00;
+  width: 100%;
+  animation: statusFlow 3s ease-in-out infinite;
+}
+
+.status-fill.streaming {
+  animation: statusStream 2s ease-in-out infinite;
+}
+
+/* Плавающие элементы */
+.floating-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-shape {
+  position: absolute;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  animation: float 6s ease-in-out infinite;
+}
+
+.shape-1 {
+  top: 20%;
+  left: 10%;
+  width: 50px;
+  height: 50px;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  top: 60%;
+  right: 10%;
+  width: 30px;
+  height: 30px;
+  animation-delay: 2s;
+}
+
+.shape-3 {
+  bottom: 20%;
+  left: 20%;
+  width: 40px;
+  height: 40px;
+  animation-delay: 4s;
+}
+
+/* Пульсирующее кольцо */
+.pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  border: 2px solid rgba(255, 0, 0, 0.5);
+  border-radius: 50%;
+  animation: pulseRing 4s linear infinite;
+  pointer-events: none;
+}
+
+/* Анимации */
+@keyframes titleGlow {
+  0%, 100% { text-shadow: 0 0 20px #ff0000; }
+  50% { text-shadow: 0 0 40px #ff0000, 0 0 60px #ff0000; }
+}
+
+@keyframes titlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes terminalType {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes highlightPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes socialGlitch {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes connectorPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+@keyframes particlesFloat {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes statusFlow {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+@keyframes statusStream {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes pulseRing {
+  0% { 
+    width: 200px;
+    height: 200px;
+    opacity: 1;
+  }
+  100% { 
+    width: 400px;
+    height: 400px;
+    opacity: 0;
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .title-line-1 {
+    font-size: 2rem;
+  }
+  
+  .title-line-2 {
+    font-size: 2.5rem;
+  }
+  
+  .social-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .actions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .status-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-section {
+    padding: 40px 20px !important;
+  }
+}

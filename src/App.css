@@ -1,38 +1,394 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
+body {
+  font-family: 'Courier New', monospace;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139, 0, 0, 0.15) 0%, transparent 50%),
+    linear-gradient(45deg, #000000 0%, #1a0000 50%, #000000 100%);
+  min-height: 200vh;
+  overflow-x: hidden;
+  color: #ff0000;
+}
+
+/* Статический шум */
+.static-noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 0, 0, 0.03) 2px,
+      rgba(255, 0, 0, 0.03) 4px
+    );
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.3;
+  animation: staticFlicker 0.1s infinite;
+}
+
+/* Слой коррупции */
+.corruption-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(90deg, transparent 50%, rgba(255, 0, 0, 0.1) 50%),
+    linear-gradient(0deg, transparent 50%, rgba(255, 0, 0, 0.1) 50%);
+  background-size: 10px 10px;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.corruption-layer.glitch-active {
+  opacity: 1;
+  animation: corruptionShift 0.5s linear;
+}
+
+/* Навбар */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: 
+    linear-gradient(135deg, 
+      rgba(0, 0, 0, 0.95) 0%, 
+      rgba(26, 0, 0, 0.9) 50%, 
+      rgba(0, 0, 0, 0.95) 100%);
+  border-bottom: 1px solid #ff0000;
+  box-shadow: 
+    0 0 20px rgba(255, 0, 0, 0.5),
+    inset 0 0 30px rgba(139, 0, 0, 0.3);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.navbar.scrolled {
+  background: rgba(0, 0, 0, 0.98);
+  box-shadow: 
+    0 0 30px rgba(255, 0, 0, 0.7),
+    inset 0 0 50px rgba(139, 0, 0, 0.5);
+}
+
+.navbar.glitch {
+  animation: glitchSkew 0.3s linear;
+}
+
+.nav-container {
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  position: relative;
+}
+
+/* Логотип */
+.nav-logo {
+  position: relative;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ff0000;
+  text-shadow: 
+    0 0 10px #ff0000,
+    0 0 20px #ff0000,
+    0 0 30px #ff0000;
+  letter-spacing: 3px;
+}
+
+.logo-glitch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #00ffff;
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+  animation: logoGlitch 5s infinite;
+}
+
+/* Голографические линии */
+.hologram-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 0, 0, 0.1) 2px,
+    rgba(255, 0, 0, 0.1) 4px
+  );
+  animation: hologramScan 3s linear infinite;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Кровавые подтеки */
+.blood-drips {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  animation: bloodDrip 8s ease-in-out infinite;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Ссылки */
+.nav-links {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  padding: 12px 20px;
+  color: #ff4444;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid #ff0000;
+  background: rgba(0, 0, 0, 0.7);
+  transition: all 0.3s ease;
+  overflow: hidden;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.nav-link:hover::before {
+  left: 100%;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+  background: rgba(255, 0, 0, 0.2);
+  box-shadow: 
+    0 0 15px rgba(255, 0, 0, 0.7),
+    inset 0 0 10px rgba(255, 0, 0, 0.3);
+  text-shadow: 0 0 10px #ffffff;
+}
+
+.nav-link.active {
+  color: #ffffff;
+  background: rgba(255, 0, 0, 0.3);
+  box-shadow: 
+    0 0 20px rgba(255, 0, 0, 0.8),
+    inset 0 0 15px rgba(255, 0, 0, 0.4);
+  border: 1px solid #ffffff;
+  text-shadow: 0 0 15px #ffffff;
+}
+
+.link-text {
+  position: relative;
+  z-index: 2;
+}
+
+.link-corruption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 5px,
+      rgba(255, 0, 0, 0.1) 5px,
+      rgba(255, 0, 0, 0.1) 10px
+    );
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.nav-link:hover .link-corruption {
+  opacity: 1;
+}
+
+/* Сканирующая линия */
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ff0000, transparent);
+  box-shadow: 0 0 10px #ff0000;
+  animation: scanMove 2s linear infinite;
+  pointer-events: none;
+}
+
+/* Мерцание голограммы */
+.hologram-flicker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 255, 255, 0.1);
+  pointer-events: none;
+  opacity: 0;
+  animation: hologramFlicker 4s infinite;
+}
+
+/* ИСПРАВЛЕННЫЙ КОНТЕНТ СТРАНИЦЫ */
+.page-content {
+  margin-top: 100px;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+
+
+/* Вместо этого добавить класс для отдельных контейнеров */
+.content-container {
+  background: rgba(0, 0, 0, 0.8);
+ 
+  padding: 30px;
+  margin: 20px 0;
+  position: relative;
+}
+
+/* Поле искажения */
+.distortion-field {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(255, 0, 0, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+  animation: distortionPulse 7s ease-in-out infinite;
+}
+
+/* Аварийная вспышка */
+.emergency-flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: 9997;
+  opacity: 0;
+  animation: emergencyFlash 15s infinite;
+}
+
+/* Анимации */
+@keyframes staticFlicker {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes glitchSkew {
+  0% { transform: skew(0deg); }
+  20% { transform: skew(-2deg); }
+  40% { transform: skew(1deg); }
+  60% { transform: skew(-1deg); }
+  80% { transform: skew(2deg); }
+  100% { transform: skew(0deg); }
+}
+
+@keyframes hologramScan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes scanMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(70px); }
+}
+
+@keyframes bloodDrip {
+  0%, 100% { transform: translateY(-10px); opacity: 0.5; }
+  50% { transform: translateY(5px); opacity: 0.8; }
+}
+
+@keyframes logoGlitch {
+  0%, 100% { opacity: 0; }
+  2%, 5% { opacity: 1; }
+  7%, 10% { opacity: 0; }
+  15%, 20% { opacity: 1; }
+}
+
+@keyframes hologramFlicker {
+  0%, 100% { opacity: 0; }
+  25% { opacity: 0.1; }
+  50% { opacity: 0; }
+  75% { opacity: 0.05; }
+}
+
+@keyframes corruptionShift {
+  0% { background-position: 0 0; }
+  100% { background-position: 10px 10px; }
+}
+
+@keyframes distortionPulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.7; }
+}
+
+@keyframes emergencyFlash {
+  0%, 95% { opacity: 0; }
+  96%, 98% { opacity: 0.8; }
+  99%, 100% { opacity: 0; }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    height: auto;
+    padding: 15px 20px;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .nav-links {
+    margin-top: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .nav-link {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .page-content {
+    margin-top: 140px;
+  }
+  
+  .content-container {
+    padding: 20px;
+    margin: 15px 0;
   }
 }
